@@ -19,7 +19,7 @@ namespace Proyecto.Models
         public string Direction { get; set; }
         public int Telephone { get; set; }
         public string Email { get; set; }
-        public int IdChronicDiseases { get; set; }
+        public int? IdChronicDiseases { get; set; }
         public int IdOccupation { get; set; }
 
         public virtual ChronicDisease IdChronicDiseasesNavigation { get; set; }
