@@ -41,6 +41,7 @@ namespace Proyecto
             // 
             // button1
             // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.Location = new System.Drawing.Point(302, 235);
@@ -62,6 +63,7 @@ namespace Proyecto
             // 
             this.textContraseña.Location = new System.Drawing.Point(302, 165);
             this.textContraseña.Name = "textContraseña";
+            this.textContraseña.PasswordChar = '*';
             this.textContraseña.Size = new System.Drawing.Size(175, 23);
             this.textContraseña.TabIndex = 4;
             // 
