@@ -41,7 +41,6 @@ namespace Proyecto
             this.registrarCitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historialDeVacunacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prechequeoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colaDeEsperaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.observacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -81,8 +80,10 @@ namespace Proyecto
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.textDUI2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.textDUI2 = new System.Windows.Forms.TextBox();
+            this.buttonConfirmar = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip2.SuspendLayout();
@@ -173,7 +174,6 @@ namespace Proyecto
             this.registroToolStripMenuItem,
             this.historialDeVacunacionToolStripMenuItem,
             this.prechequeoToolStripMenuItem,
-            this.colaDeEsperaToolStripMenuItem,
             this.observacionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(102, 41);
             this.menuStrip1.Name = "menuStrip1";
@@ -204,6 +204,7 @@ namespace Proyecto
             this.registrarCitaToolStripMenuItem.Name = "registrarCitaToolStripMenuItem";
             this.registrarCitaToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.registrarCitaToolStripMenuItem.Text = "Registrar Cita";
+            this.registrarCitaToolStripMenuItem.Click += new System.EventHandler(this.registrarCitaToolStripMenuItem_Click);
             // 
             // historialDeVacunacionToolStripMenuItem
             // 
@@ -221,14 +222,6 @@ namespace Proyecto
             this.prechequeoToolStripMenuItem.Size = new System.Drawing.Size(92, 38);
             this.prechequeoToolStripMenuItem.Text = "Pre-chequeo";
             // 
-            // colaDeEsperaToolStripMenuItem
-            // 
-            this.colaDeEsperaToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
-            this.colaDeEsperaToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.colaDeEsperaToolStripMenuItem.Name = "colaDeEsperaToolStripMenuItem";
-            this.colaDeEsperaToolStripMenuItem.Size = new System.Drawing.Size(103, 38);
-            this.colaDeEsperaToolStripMenuItem.Text = "Cola de espera";
-            // 
             // observacionToolStripMenuItem
             // 
             this.observacionToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
@@ -245,6 +238,7 @@ namespace Proyecto
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 98);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -449,6 +443,7 @@ namespace Proyecto
             // 
             this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(new object[] {
             "110",
@@ -575,6 +570,7 @@ namespace Proyecto
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Alzheimer",
@@ -603,6 +599,7 @@ namespace Proyecto
             // 
             this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "civil",
@@ -672,8 +669,9 @@ namespace Proyecto
             this.tableLayoutPanel3.Controls.Add(this.label23, 5, 5);
             this.tableLayoutPanel3.Controls.Add(this.label22, 5, 4);
             this.tableLayoutPanel3.Controls.Add(this.label21, 5, 3);
-            this.tableLayoutPanel3.Controls.Add(this.textDUI2, 4, 2);
             this.tableLayoutPanel3.Controls.Add(this.label13, 1, 4);
+            this.tableLayoutPanel3.Controls.Add(this.textDUI2, 4, 2);
+            this.tableLayoutPanel3.Controls.Add(this.buttonConfirmar, 4, 6);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 8;
@@ -685,6 +683,7 @@ namespace Proyecto
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.708427F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.708427F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.708427F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(685, 311);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -739,7 +738,6 @@ namespace Proyecto
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(78, 15);
             this.label11.TabIndex = 4;
-            this.label11.Text = "label11";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
@@ -778,7 +776,6 @@ namespace Proyecto
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 15);
             this.label15.TabIndex = 8;
-            this.label15.Text = "label15";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
@@ -791,7 +788,6 @@ namespace Proyecto
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(78, 15);
             this.label16.TabIndex = 9;
-            this.label16.Text = "label16";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label17
@@ -804,7 +800,6 @@ namespace Proyecto
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(78, 15);
             this.label17.TabIndex = 10;
-            this.label17.Text = "label17";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label20
@@ -856,7 +851,6 @@ namespace Proyecto
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(78, 15);
             this.label23.TabIndex = 16;
-            this.label23.Text = "label23";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label22
@@ -869,7 +863,6 @@ namespace Proyecto
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(78, 15);
             this.label22.TabIndex = 15;
-            this.label22.Text = "label22";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label21
@@ -882,18 +875,7 @@ namespace Proyecto
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(78, 15);
             this.label21.TabIndex = 14;
-            this.label21.Text = "label21";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textDUI2
-            // 
-            this.textDUI2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.SetColumnSpan(this.textDUI2, 2);
-            this.textDUI2.Location = new System.Drawing.Point(377, 132);
-            this.textDUI2.Name = "textDUI2";
-            this.textDUI2.Size = new System.Drawing.Size(162, 23);
-            this.textDUI2.TabIndex = 17;
             // 
             // label13
             // 
@@ -907,6 +889,37 @@ namespace Proyecto
             this.label13.TabIndex = 6;
             this.label13.Text = "Enfermedad";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textDUI2
+            // 
+            this.textDUI2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.textDUI2, 2);
+            this.textDUI2.Location = new System.Drawing.Point(377, 132);
+            this.textDUI2.Name = "textDUI2";
+            this.textDUI2.Size = new System.Drawing.Size(162, 23);
+            this.textDUI2.TabIndex = 17;
+            // 
+            // buttonConfirmar
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.buttonConfirmar, 2);
+            this.buttonConfirmar.Location = new System.Drawing.Point(377, 252);
+            this.buttonConfirmar.Name = "buttonConfirmar";
+            this.buttonConfirmar.Size = new System.Drawing.Size(162, 24);
+            this.buttonConfirmar.TabIndex = 18;
+            this.buttonConfirmar.Text = "Solicitar cita";
+            this.buttonConfirmar.UseVisualStyleBackColor = true;
+            this.buttonConfirmar.Click += new System.EventHandler(this.buttonConfirmar_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(694, 314);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // Home
             // 
@@ -954,7 +967,6 @@ namespace Proyecto
         private System.Windows.Forms.ToolStripMenuItem registrarCitaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem historialDeVacunacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prechequeoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem colaDeEsperaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem observacionToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -996,5 +1008,7 @@ namespace Proyecto
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonConfirmar;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
