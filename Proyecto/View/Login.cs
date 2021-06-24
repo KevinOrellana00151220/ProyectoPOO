@@ -20,7 +20,7 @@ namespace Proyecto
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,21 +33,32 @@ namespace Proyecto
 
             string usuario = textUsuario.Text;
             string contra = textContraseña.Text;
-           
+
 
             bool existe = usuarios
                 .Where(u => u.UserManagement == usuario &&
                             u.PasswordManagement == contra)
                 .ToList().Count() > 0;
 
-            if (existe)
+            if (existe && comboBox1.Text != null)
             {
                 var filtro = cabinas
                    .Where(a => a.Direction.Equals(comboBox1.Text))
                    .ToList();
 
                 ManagementLogin m = new ManagementLogin();
-                Record r = new Record();                
+                List<ManagementLogin> logins = db.ManagementLogins.ToList();
+
+                Record r = new Record();
+
+                if (logins.Count() == 0)
+                {
+                    m.Id = 1;
+                }
+                else
+                {
+                    m.Id = (logins.Count() + 1);
+                }
 
                 m.IdCabin = filtro[0].Id;
                 m.DateHour = DateTime.Now;
@@ -55,16 +66,43 @@ namespace Proyecto
                 db.Add(m);
                 db.SaveChanges();
 
+                var filtro2 = usuarios
+                   .Where(l => l.UserManagement.Equals(usuario) && l.PasswordManagement.Equals(contra))
+                   .ToList();
+
+                if (logins.Count() == 0)
+                {
+                    r.IdManagementLogin = 1;
+                }
+                else
+                {
+                    r.IdManagementLogin = (logins.Count() + 1);
+                }
+
+
+                r.IdEmployee = filtro2[0].Id;
+
+
+                db.Add(r);
+                db.SaveChanges();
+
+
+
                 MessageBox.Show("Bienvenido!", "Cabina UCA",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Home ventanaprincipal = new Home();
+                this.Hide();
                 ventanaprincipal.ShowDialog();
+                Close();
+
 
             }
             else
                 MessageBox.Show("Usuario no encontrado!", "Cabina UCA",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
+
         }
+
+
     }
 }
