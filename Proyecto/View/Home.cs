@@ -17,10 +17,6 @@ namespace Proyecto
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectedIndex = 1; 
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -92,32 +88,6 @@ namespace Proyecto
          */
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void registrarseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectedIndex = 0;
-          
-        }
-
-        private void citaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectedIndex = 1;
-          
-        }
-
-        private void irACitaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectedIndex = 2;
-        }
-
-        private void irACitaToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectedIndex = 3;
-        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
