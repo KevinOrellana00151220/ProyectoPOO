@@ -40,7 +40,7 @@ namespace Proyecto
                             u.PasswordManagement == contra)
                 .ToList().Count() > 0;
 
-            if (existe && comboBox1.Text != null)
+            if (existe && comboBox1.Text != "")
             {
                 var filtro = cabinas
                    .Where(a => a.Direction.Equals(comboBox1.Text))
@@ -96,7 +96,7 @@ namespace Proyecto
                 Close();
 
 
-            }
+            }          
             else
                 MessageBox.Show("Usuario no encontrado!", "Cabina UCA",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
