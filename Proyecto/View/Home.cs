@@ -19,33 +19,14 @@ namespace Proyecto
             InitializeComponent();
         }
 
-        /*
+        
 
-        private DateTime Apptime() 
+        public DateTime Apptime() 
         {
             
             var fechacita = DateTime.Now;            
-            bool continuar = true;
-            int horacita;
             int mescita;
-            int diacita;
-
-
-            do
-
-            {
-                if (fechacita.Hour >= 8)
-                {
-                    continuar = false;
-
-                }
-                else
-                {
-                    horacita = fechacita.Hour + 1;
-
-                }
-                
-            } while (continuar);
+            int diacita;       
 
 
             if (fechacita.Day >= 26 )
@@ -60,23 +41,27 @@ namespace Proyecto
                 diacita = fechacita.Day + 5;
             }
             
-            var cita = new DateTime(fechacita.Year, mescita, diacita, horacita , 0, 0);
-
-
-
-            
-           
-         
+            var cita = new DateTime(fechacita.Year, mescita, diacita, 15 , 0, 0);
+                        
             return cita;
             
         }
-        */
+
+        public DateTime Apptime2(DateTime date1)
+        {
+            
+            var cita = new DateTime();
+
+            cita = date1.AddDays(42);
+
+            return cita;
+
+        }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
             
-
             //Expresiones regulares que controlan que solo sea una expresion con 8 digitos con numeros del 0 al 9 y otra expresion
             // de 9 digitos de 0 al 9, esto para el telefono y el DUI.
             var expression = "^[0-9]{8}$";
@@ -174,61 +159,295 @@ namespace Proyecto
 
         private void button3_Click(object sender, EventArgs e)
         {
-            /*
-
-         //creamos la cita
-         var db = new ClinicUcaContex();
-         Appointment a = new Appointment();
-
-         a.id_citizen = u.id;
-         a.id_employee = e.id;
-         a.id_vacune = null;
-         a.reservation = dateTimePicker.Value;
-
-         db.Add(a);
-         db.SaveChanges();
-
-         // Notificar al usuario
-         MessageBox.Show("Cita registrado exitosamente!", "Cabina UCA",
-             MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-         */
+           
         }
 
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            /*
-            var db = new ClinicUcaContex();
-            List<User> usuarios = db.Users.ToList();
-
-            string dui = textDUI.Text;
-            string name = textName.Text;
-           
-
-            bool existe = usuarios
-                .Where(u => u.DUI == dui &&
-                            u.name == name)
-                .ToList().Count() > 0;
-
-            if (existe)
-            {
-                MessageBox.Show("Ponganse en fila, ya sera atendido para ser vacunado!", "Cabina UCA",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-              tabControl1.SelectedIndex = 4;
-
-            }
-            else
-                MessageBox.Show("Ciudadano no encontrado!", "Cabina UCA",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            */
+            
+          
+            
         }
 
         private void registrarUnCiudadanoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 1;
+        }
+
+        private void buttonConfirmar_Click(object sender, EventArgs e)
+        {
+            var db = new Proyecto_POO_BDDContext();
+            List<Citizen> ciudadanos = db.Citizens.ToList();
+            List<Appointment> citas1 = db.Appointments.ToList();
+            List<Record> logins = db.Records.ToList();
+
+
+            string dui = textDUI2.Text;          
+
+
+            bool existe1 = ciudadanos
+                .Where(u => u.Dui == dui)
+                .ToList().Count() > 0;
+
+            var filtro1 = ciudadanos
+                   .Where(d => d.Dui.Equals(textDUI2.Text))
+                    .ToList();
+            
+            var filtro2 = citas1
+                   .Where(e => e.IdCitizen.Equals(filtro1[0].Id))
+                    .ToList();
+
+            
+            if (existe1)
+            {                
+                label11.Text = Convert.ToString(filtro1[0].Age);
+                label15.Text = Convert.ToString(filtro1[0].Telephone);
+
+                if (filtro1[0].IdChronicDiseases is null)
+                {
+                    label16.Text = "Ninguna";
+
+                }
+
+                else 
+                {
+                    switch (filtro1[0].IdChronicDiseases)
+                    {
+                        case 1:
+                            label16.Text = "Alzheimer";
+                            break;
+
+                        case 2:
+                            label16.Text = "Artritis";
+                            break;
+
+                        case 3:
+                            label16.Text = "Asma";
+                            break;
+
+                        case 4:
+                            label16.Text = "Cáncer";
+                            break;
+
+                        case 5:
+                            label16.Text = "Demencia";
+                            break;
+
+                        case 6:
+                            label16.Text = "Diabetes";
+                            break;
+
+                        case 7:
+                            label16.Text = "EPOC (Enfermedad pulmonal obstructiva crónica)";
+                            break;
+
+                        case 8:
+                            label16.Text = "Enfermedad de Crohn";
+                            break;
+
+                        case 9:
+                            label16.Text = "Epilipsia";
+                            break;
+
+                        case 10:
+                            label16.Text = "Enfermedad del corazón";
+                            break;
+
+                        case 11:
+                            label16.Text = "Fibrosis quística";
+                            break;
+
+                        case 12:
+                            label16.Text = "Gonorrea";
+                            break;
+
+                        case 13:
+                            label16.Text = "Herpes genital";
+                            break;
+
+                        case 14:
+                            label16.Text = "Parkinson";
+                            break;
+
+                        case 15:
+                            label16.Text = "Sifilis";
+                            break;
+
+                        case 16:
+                            label16.Text = "Trastornos de humor";
+                            break;
+
+                        case 17:
+                            label16.Text = "VIH/SIDA";
+                            break;
+
+                      
+                        default:
+                            break;
+                    }
+
+                }
+
+                switch (filtro1[0].IdOccupation)
+                {
+                    case 1:
+                        label17.Text = "civil";
+                        break;
+
+                    case 2:
+                        label17.Text = "educación";
+                        break;
+
+                    case 3:
+                        label17.Text = "salud";
+                        break;
+
+                    case 4:
+                        label17.Text = "PNC";
+                        break;
+
+                    case 5:
+                        label17.Text = "gobierno";
+                        break;
+
+                    case 6:
+                        label17.Text = "fuerza armada";
+                        break;
+
+                    case 7:
+                        label17.Text = "periodismo";
+                        break;
+
+                    case 8:
+                        label17.Text = "cuerpo de socorro";
+                        break;
+
+                    case 9:
+                        label17.Text = "personal de frontera";
+                        break;
+
+                    case 10:
+                        label17.Text = "centro penal";
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+                if (filtro2.Count == 0 || filtro2.Count == 1)
+                {
+                    if (filtro2.Count == 0) 
+                    {
+                        var c = new Appointment();
+                        DateTime datehour;
+                        int hour;
+                        int number = logins.Count() - 1 ;
+                        int empleado = logins[number].IdEmployee;
+
+                        c.Id = 1;
+                        c.ReservationDate = Apptime();
+                        c.IdCitizen = filtro1[0].Id;
+                        c.IdEmployee = empleado;
+                        c.IdVaccination = 1;
+                        c.IdVaccine = 1;
+                        c.AssistanceDate = null;
+                        c.VaccinationDate = null;
+                        datehour = (DateTime)c.ReservationDate;
+                        hour = datehour.Hour;
+                        
+
+                        label21.Text = Convert.ToString(c.ReservationDate);
+                        label22.Text = Convert.ToString(hour) + ":00 PM";
+                        label23.Text = Convert.ToString(c.IdVaccine);
+
+
+                        db.Add(c);                        
+                        db.SaveChanges();
+
+                        // Notificar al usuario
+                        MessageBox.Show("Cita registrada exitosamente!", "Cabina UCA",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    else 
+                    {
+                        if (filtro2[0].VaccinationDate != null)
+                        {
+                            var c = new Appointment();
+                            DateTime datehour;
+                            int hour;
+                            int number = logins.Count() - 1;
+                            int empleado = logins[number].IdEmployee;
+
+                            var newdate = new DateTime();
+                            newdate = (DateTime)filtro2[0].ReservationDate;
+
+                            c.Id = 2;
+                            c.ReservationDate = Apptime2(newdate);
+                            c.IdCitizen = filtro1[0].Id;
+                            c.IdEmployee = empleado;
+                            c.IdVaccination = 2;
+                            c.IdVaccine = 2;
+                            c.AssistanceDate = null;
+                            c.VaccinationDate = null;
+                            datehour = (DateTime)c.ReservationDate;
+                            hour = datehour.Hour;
+
+                            label21.Text = Convert.ToString(c.ReservationDate);
+                            label22.Text = Convert.ToString(hour) + ":00 PM";
+                            label23.Text = Convert.ToString(c.IdVaccine);
+
+                            db.Add(c);
+                            db.SaveChanges();
+
+
+
+                            // Notificar al usuario
+                            MessageBox.Show("Cita registrada exitosamente!", "Cabina UCA",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+
+                        else 
+                        {
+                            MessageBox.Show("Usted ya tiene una cita al cual asistir!", "Cabina UCA",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+
+
+                        
+
+                    }
+
+                }
+
+                else 
+                {
+                    MessageBox.Show("Usted ya ha recibido las dos vacunas!", "Cabina UCA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
+                
+
+            }
+
+            else
+                MessageBox.Show("Ciudadano no encontrado!", "Cabina UCA",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+
+        private void buttonRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registrarCitaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 2;
         }
     }
 }
